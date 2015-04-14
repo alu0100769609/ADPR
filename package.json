@@ -1,0 +1,22 @@
+{
+  "name": "ADPR",
+  "version": "1.0.0",
+  "description": "ADPR",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alu0100769609/ADPR.git"
+  },
+  "author": "ASP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alu0100769609/ADPR/issues"
+  },
+  "homepage": "https://github.com/alu0100769609/ADPR",
+  "devDependencies": {
+    "js2coffee": "^2.0.3"
+  }
+}
