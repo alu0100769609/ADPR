@@ -1,0 +1,28 @@
+{
+  "name": "ADPR",
+  "version": "1.0.0",
+  "description": "Analizador Descendente Predictivo Recursivo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alu0100769609/ADPR.git"
+  },
+  "author": "ASP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alu0100769609/ADPR/issues"
+  },
+  "homepage": "https://github.com/alu0100769609/ADPR",
+  "dependencies": {
+    "express": "^4.12.3"
+  },
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "express": "^4.12.3",
+    "express-generator": "^4.12.1",
+    "mocha": "^2.2.4"
+  }
+}
