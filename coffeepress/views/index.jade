@@ -1,5 +1,53 @@
-extends layout
+h1 Top Down Operator Precedence. Lexical Analysis
+    p
+      nav
+        a.mylink(href='https://github.com/alu0100769609/AnalizadorLexico', target='_blank') Repo on GitHub
+        p
+          a.mylink(href='tests/index.html', target='_blank') Tests
+        p
+          a.mylink(href='http://adexe-heroku.herokuapp.com/', target='_blank') Heroku
+    h2 Input
+    p
+      div
+        button#example1(type='button', onclick="dump('./ejemplos/example1.txt');") Example 1
+        button#example2(type='button', onclick="dump('./ejemplos/example2.txt');") Example 2
+        button#example3(type='button', onclick="dump('./ejemplos/example3.txt');") Example 3
+    p
+       Drop your file or fill the box manually:
+    textarea#INPUT
+       var a = &quot;hello&quot;; // initialize a
+       var b = function(x) {
+       var c = 3;
+       return x+c;
+       };
+    br
 
-block content
-  h1= title
-  p Welcome to #{title}
+    input#files(type='file')
+
+
+    script(type='text/javascript').
+      function dump(fileName) {
+      $.get(fileName, function (data) {
+      $("#INPUT").val(data);
+      });
+      };
+      document.getElementById('files').addEventListener('change', CopyMe, false);
+      function CopyMe(evt) {
+      var file = evt.target.files[0];
+      if (file) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+      INPUT.innerHTML = e.target.result;
+      }
+      var c = reader.readAsText(file);
+      }
+      else { alert("Failed to load file"); }
+      }
+
+
+
+
+
+
+    input#PARSE.mylink(value='parse', type='button')
+    pre#OUTPUT.
