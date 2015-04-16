@@ -25,16 +25,15 @@ String.prototype.tokens = function () {
     var m;                      // Matching
     var result = [];            // An array to hold the results.
 
+    //tokens basicos de PL/0
     var WHITES              = /\s+/g;
     var ID                  = /[a-zA-Z_]\w*/g;
     var NUM                 = /\b\d+(\.\d*)?([eE][+-]?\d+)?\b/g;
-    var STRING              = /('(\\.|[^'])*'|"(\\.|[^"])*")/g;
-    var ONELINECOMMENT      = /\/\/.*/g;
-    var MULTIPLELINECOMMENT = /\/[*](.|\n)*?[*]\//g;
-    var TWOCHAROPERATORS    = /(===|!==|[+][+=]|-[-=]|=[=<>]|[<>][=<>]|&&|[|][|])/g;
-    var ONECHAROPERATORS    = /([-+*\/=()&|;:,<>{}[\]])/g; // May be some character is missing?
-    var tokens = [WHITES, ID, NUM, STRING, ONELINECOMMENT,
-                  MULTIPLELINECOMMENT, TWOCHAROPERATORS, ONECHAROPERATORS ];
+    //versiones de PL/0
+    var TWOCHAROPERATORS    = /(:=|<=|>=)/g;
+    var ONECHAROPERATORS    = /[-+.=,;?!#<>*/()]/g;
+
+    var tokens = [WHITES, ID, NUM, TWOCHAROPERATORS, ONECHAROPERATORS ];
 
 
     // Make a token object.
@@ -61,26 +60,20 @@ String.prototype.tokens = function () {
         tokens.forEach( function(t) { t.lastIndex = i;}); // Only ECMAScript5
         from = i;
         // Ignore whitespace and comments
-        if (m = WHITES.bexec(this) ||
-           (m = ONELINECOMMENT.bexec(this))  ||
-           (m = MULTIPLELINECOMMENT.bexec(this))) { getTok(); }
+        if (m = WHITES.bexec(this)) { getTok(); }
         // name.
         else if (m = ID.bexec(this)) {
-            result.push(make('name', getTok()));
+            result.push(make('ID', getTok()));
         }
         // number.
         else if (m = NUM.bexec(this)) {
             n = +getTok();
 
             if (isFinite(n)) {
-                result.push(make('number', n));
+                result.push(make('NUM', n));
             } else {
-                make('number', m[0]).error("Bad number");
+                make('NUM', m[0]).error("Bad number");
             }
-        }
-        // string
-        else if (m = STRING.bexec(this)) {
-            result.push(make('string', getTok().replace(/^["']|["']$/g,'')));
         }
         // two char operator
         else if (m = TWOCHAROPERATORS.bexec(this)) {

@@ -16,7 +16,17 @@ Object.constructor.prototype.error = function (message, t) {
     throw t;
 };
 
-function main() {
+function main_tokenize() {
+    var source = INPUT.value;
+    var string, tree;
+    //string = "Intento de tokenizacion";
+    string = JSON.stringify(source.tokens());
+    string = string.replace(/\},/g, '},\n');
+    //string = string.replace(/,/g, ',\t');
+    OUTPUT.innerHTML = string.replace(/&/g, '&amp;').replace(/[<]/g, '&lt;');
+};
+
+function main_parse() {
     var parse = make_parse();
 
     var source = INPUT.value;
@@ -34,5 +44,6 @@ function main() {
 };
 
 window.onload = function() {
-  PARSE.onclick = main;
+  TOKENIZE.onclick = main_tokenize;
+  PARSE.onclick = main_parse;
 }
